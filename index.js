@@ -340,7 +340,7 @@ function sendRequest(args) {
       url: options.endpoint,
       formData
       },
-      options.requestOptions
+      { proxy: options.proxy }
     ), function (err, res, body) {
       if (err || res.statusCode !== 200) {
         reject(err || new Error(`${res.statusMessage} (${res.statusCode}) - ${body}`));
