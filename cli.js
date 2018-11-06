@@ -24,6 +24,7 @@ const cli = meow(`
       -r, --project-root PATH    The root path to remove from absolute file paths
       -w, --add-wildcard-prefix  Insert a wildcard prefix when stripping root path
       -o, --overwrite            Overwite previously uploaded source maps
+      --proxy                    A http/https proxy to use, if any      
 
     Examples
       $ bugsnag-sourcemaps upload \\
@@ -58,6 +59,7 @@ const cli = meow(`
   },
   string: [
     'app-version',
+    'proxy'
   ],
   boolean: [
     'overwrite',
