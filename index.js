@@ -20,6 +20,7 @@ const DEFAULT_OPTIONS = {
   projectRoot: '.',
   stripProjectRoot: true,
   addWildcardPrefix: false,
+  requestOptions: {}
 };
 
 /**
@@ -60,6 +61,10 @@ function validateOptions(options) {
   if (options.projectRoot && !path.isAbsolute(options.projectRoot)) {
     options.projectRoot = path.resolve(options.projectRoot);
   }
+  if (options.requestOptions && typeof options.requestOptions !== 'object') {
+    throw new Error('Request options, when provided, must be an object.');
+  }
+
   return options;
 }
 
@@ -331,10 +336,12 @@ function sendRequest(args) {
   const options = args.options
   const formData = args.formData
   return new Promise((resolve, reject) => {
-    request.post({
+    request.post(Object.assign({
       url: options.endpoint,
-      formData,
-    }, function (err, res, body) {
+      formData
+      },
+      options.requestOptions
+    ), function (err, res, body) {
       if (err || res.statusCode !== 200) {
         reject(err || new Error(`${res.statusMessage} (${res.statusCode}) - ${body}`));
       } else {
