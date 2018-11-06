@@ -46,6 +46,7 @@ $ bugsnag-sourcemaps upload --api-key YOUR_API_KEY_HERE \
 -t, --strip-project-root   Strip the root path from file paths in the source map
 -w, --add-wildcard-prefix  Insert a wildcard prefix when stripping root path
 -o, --overwrite            Overwite previously uploaded source maps
+--proxy                    A http/https proxy to use, if any
 ```
 
 ## API Usage
